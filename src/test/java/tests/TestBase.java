@@ -5,20 +5,30 @@ import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import pages.RegistrationPage;
-import pages.TextBoxPage;
 
 
 public class TestBase {
     RegistrationPage registrationPage = new RegistrationPage();
-    TextBoxPage textBoxPage = new TextBoxPage();
+
+//    @BeforeAll
+//    static void setupSelenideEnv() {
+//        Configuration.browser = "chrome";
+//        Configuration.browserSize = "1920x1080";
+//        Configuration.baseUrl = "https://demoqa.com";
+//        Configuration.timeout = 10000; // default 4000
+//    }
 
     @BeforeAll
-    static void setupSelenideEnv() {
-        Configuration.browser = "chrome";
-        Configuration.browserSize = "1920x1080";
+    static void beforeAll() {
         Configuration.baseUrl = "https://demoqa.com";
-        Configuration.timeout = 10000; // default 4000
+        Configuration.browserSize = "1920x1080";
+        Configuration.browser = "chrome";
+        Configuration.browserVersion = "128.0";
+//        Configuration.browserVersion = "130.0";
+        Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
     }
+
+
 
     @AfterEach
     void closeWebDriver() {
